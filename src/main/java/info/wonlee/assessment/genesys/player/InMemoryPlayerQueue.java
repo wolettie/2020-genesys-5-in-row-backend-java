@@ -9,7 +9,7 @@ package info.wonlee.assessment.genesys.player;
  *
  ***************************************************************/
 
-import info.wonlee.assessment.genesys.game.GameManager;
+import info.wonlee.assessment.genesys.game.manager.GameManager;
 
 import java.util.Queue;
 import java.util.UUID;

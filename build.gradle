@@ -16,6 +16,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
+	implementation group: 'com.auth0', name: 'java-jwt', version: '3.12.0'
+
 	implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
 	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
 

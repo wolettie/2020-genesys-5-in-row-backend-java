@@ -9,7 +9,7 @@ package info.wonlee.assessment.genesys;
  *
  ***************************************************************/
 
-import info.wonlee.assessment.genesys.game.GameManager;
+import info.wonlee.assessment.genesys.game.manager.GameManager;
 import info.wonlee.assessment.genesys.player.Player;
 import info.wonlee.assessment.genesys.player.PlayerQueue;
 import org.junit.jupiter.api.Assertions;

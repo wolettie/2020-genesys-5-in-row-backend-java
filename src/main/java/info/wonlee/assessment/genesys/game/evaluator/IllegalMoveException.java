@@ -1,4 +1,4 @@
-package info.wonlee.assessment.genesys.game;
+package info.wonlee.assessment.genesys.game.evaluator;
 /***************************************************************
  * Copyright (c) 2020 Errigal Inc.
  *
@@ -9,14 +9,13 @@ package info.wonlee.assessment.genesys.game;
  *
  ***************************************************************/
 
-import info.wonlee.assessment.genesys.player.Player;
-
 /**
  * User: wonlee
  * Date: 23/12/2020
  */
 
-public interface GameManager {
-    Game createGame(Player player1, Player player2);
-    Game gameStatus(Player player);
+public class IllegalMoveException extends Exception {
+    public IllegalMoveException(String message) {
+        super(message);
+    }
 }

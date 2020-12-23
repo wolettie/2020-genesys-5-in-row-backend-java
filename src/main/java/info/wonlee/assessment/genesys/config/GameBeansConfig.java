@@ -9,8 +9,8 @@ package info.wonlee.assessment.genesys.config;
  *
  ***************************************************************/
 
-import info.wonlee.assessment.genesys.game.GameManager;
-import info.wonlee.assessment.genesys.game.InMemoryGameManager;
+import info.wonlee.assessment.genesys.game.manager.GameManager;
+import info.wonlee.assessment.genesys.game.manager.InMemoryGameManager;
 import info.wonlee.assessment.genesys.player.InMemoryPlayerQueue;
 import info.wonlee.assessment.genesys.player.PlayerQueue;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

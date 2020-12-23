@@ -9,7 +9,7 @@ package info.wonlee.assessment.genesys;
  *
  ***************************************************************/
 
-import info.wonlee.assessment.genesys.game.InMemoryGameManager;
+import info.wonlee.assessment.genesys.game.manager.InMemoryGameManager;
 import info.wonlee.assessment.genesys.player.InMemoryPlayerQueue;
 import info.wonlee.assessment.genesys.player.Player;
 import org.junit.jupiter.api.Assertions;
@@ -25,7 +25,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
  */
 
 @ExtendWith(MockitoExtension.class)
-public class InMemoryGameManagementUnitTest {
+public class InMemoryPlayerQueueUnitTest {
     InMemoryGameManager inMemoryGameManager;
     InMemoryPlayerQueue inMemoryPlayerQueue;
 
