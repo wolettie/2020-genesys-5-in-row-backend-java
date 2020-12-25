@@ -1,17 +1,6 @@
-package info.wonlee.assessment.genesys;
-/***************************************************************
- * Copyright (c) 2020 Errigal Inc.
- *
- * This software is the confidential and proprietary information
- * of Errigal, Inc.  You shall not disclose such confidential
- * information and shall use it only in accordance with the
- * license agreement you entered into with Errigal.
- *
- ***************************************************************/
+package info.wonlee.assessment.genesys.player;
 
 import info.wonlee.assessment.genesys.game.manager.InMemoryGameManager;
-import info.wonlee.assessment.genesys.player.InMemoryPlayerQueue;
-import info.wonlee.assessment.genesys.player.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

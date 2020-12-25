@@ -1,15 +1,5 @@
-package info.wonlee.assessment.genesys;
-/***************************************************************
- * Copyright (c) 2020 Errigal Inc.
- *
- * This software is the confidential and proprietary information
- * of Errigal, Inc.  You shall not disclose such confidential
- * information and shall use it only in accordance with the
- * license agreement you entered into with Errigal.
- *
- ***************************************************************/
+package info.wonlee.assessment.genesys.game;
 
-import info.wonlee.assessment.genesys.game.Game;
 import info.wonlee.assessment.genesys.game.evaluator.IllegalMoveException;
 import info.wonlee.assessment.genesys.game.manager.InMemoryGameManager;
 import info.wonlee.assessment.genesys.player.InMemoryPlayerQueue;
@@ -41,7 +31,8 @@ public class InMemoryGameManagerUnitTest {
         player2 = inMemoryPlayerQueue.register(new Player());
     }
 
-    @Test void test_share_the_same_game() {
+    @Test
+    void test_share_the_same_game() {
         Assertions.assertEquals(
                 inMemoryGameManager.gameStatus(player1),
                 inMemoryGameManager.gameStatus(player2)

@@ -1,13 +1,4 @@
 package info.wonlee.assessment.genesys.game.manager;
-/***************************************************************
- * Copyright (c) 2020 Errigal Inc.
- *
- * This software is the confidential and proprietary information
- * of Errigal, Inc.  You shall not disclose such confidential
- * information and shall use it only in accordance with the
- * license agreement you entered into with Errigal.
- *
- ***************************************************************/
 
 import info.wonlee.assessment.genesys.game.Game;
 import info.wonlee.assessment.genesys.game.evaluator.IllegalMoveException;
@@ -44,7 +35,7 @@ public class InMemoryGameManager implements GameManager {
     }
 
     @Override
-    public Game playerDisconnect(Player player) {
+    public Game playerDisconnected(Player player) {
         Game game = playerGameMap.get(player);
         game.setWinner((game.getFirstPlayer().equals(player)) ? game.getSecondPlayer() : game.getFirstPlayer());
         return game;

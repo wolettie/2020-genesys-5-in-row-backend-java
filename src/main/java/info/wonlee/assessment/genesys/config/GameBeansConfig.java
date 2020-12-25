@@ -1,13 +1,4 @@
 package info.wonlee.assessment.genesys.config;
-/***************************************************************
- * Copyright (c) 2020 Errigal Inc.
- *
- * This software is the confidential and proprietary information
- * of Errigal, Inc.  You shall not disclose such confidential
- * information and shall use it only in accordance with the
- * license agreement you entered into with Errigal.
- *
- ***************************************************************/
 
 import info.wonlee.assessment.genesys.game.manager.GameManager;
 import info.wonlee.assessment.genesys.game.manager.InMemoryGameManager;
@@ -18,6 +9,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * {@link ConditionalOnProperty} is used for fine tune strategy.
+ * If we force to use the same strategy across the beans,
+ * using {@link org.springframework.context.annotation.Profile} and create config class per profile would be more simple.
+ *
+ *
  * User: wonlee
  * Date: 23/12/2020
  */
@@ -25,13 +21,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class GameBeansConfig {
     @Bean(name = "playerQueue")
-    @ConditionalOnProperty(value = "game.management.strategy", havingValue = "inMemory")
+    @ConditionalOnProperty(value = "playerQueue.strategy", havingValue = "inMemory")
     public PlayerQueue inMemoryPlayerQueue(GameManager gameManager) {
         return new InMemoryPlayerQueue(gameManager);
     }
 
     @Bean(name = "gameManager")
-    @ConditionalOnProperty(value = "game.management.strategy", havingValue = "inMemory")
+    @ConditionalOnProperty(value = "gameManagement.strategy", havingValue = "inMemory")
     public GameManager inMemoryGameManager() {
         return new InMemoryGameManager();
     }
