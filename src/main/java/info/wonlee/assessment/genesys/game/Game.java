@@ -1,6 +1,5 @@
 package info.wonlee.assessment.genesys.game;
 
-import info.wonlee.assessment.genesys.game.evaluator.IllegalMoveException;
 import info.wonlee.assessment.genesys.player.Player;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,46 +36,5 @@ public class Game {
         this.firstPlayer = (shuffle) ? player1 : player2;
         this.secondPlayer = (shuffle) ? player2 : player1;
         this.currentPlayer = this.firstPlayer;
-    }
-
-    /**
-     *
-     * @param player who is requesting move
-     * @param column number (starts from 0) where player is dropping disc
-     * @return
-     * @throws IllegalMoveException
-     */
-    public Game dropDisc(Player player, int column) throws IllegalMoveException {
-        if (!currentPlayer.equals(player)) {
-            throw new IllegalMoveException(
-                    String.format("it is not turn of player %s (uuid: %s)", player.getUuid(), player.getUuid())
-            );
-        }
-        if (winner != null) {
-            throw new IllegalMoveException(
-                    String.format("game is already over, winner was %s (uuid: %s)", winner.getUuid(), winner.getUuid())
-            );
-        }
-        if (column < 0 || column >= board.length) {
-            throw new IllegalMoveException(String.format("column %d is invalid", column));
-        }
-
-        int[] row = board[column];
-        int rowIndex = -1;
-        for (int i = 0; i < row.length; i++) {
-            if (row[i] == 0) {
-                row[i] = (player.equals(firstPlayer)) ? 1 : 2;
-                rowIndex = i;
-                break;
-            }
-        }
-        if (rowIndex < 0) {
-            throw new IllegalMoveException(String.format("column %d is already filled", column));
-        } else {
-            currentPlayer = (currentPlayer.equals(firstPlayer)) ? secondPlayer : firstPlayer;
-            lastMoveAt = LocalDateTime.now();
-        }
-
-        return this;
     }
 }

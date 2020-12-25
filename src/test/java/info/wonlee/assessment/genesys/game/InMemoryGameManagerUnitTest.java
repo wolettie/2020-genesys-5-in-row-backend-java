@@ -1,14 +1,15 @@
 package info.wonlee.assessment.genesys.game;
 
-import info.wonlee.assessment.genesys.game.evaluator.IllegalMoveException;
 import info.wonlee.assessment.genesys.game.manager.InMemoryGameManager;
 import info.wonlee.assessment.genesys.player.InMemoryPlayerQueue;
 import info.wonlee.assessment.genesys.player.Player;
+import info.wonlee.assessment.genesys.game.evaluator.GameEvaluator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 /**
  * User: wonlee
@@ -23,9 +24,12 @@ public class InMemoryGameManagerUnitTest {
     Player player1;
     Player player2;
 
+    @MockBean
+    GameEvaluator gameEvaluateService;
+
     @BeforeEach
     public void testSetup() {
-        inMemoryGameManager = new InMemoryGameManager();
+        inMemoryGameManager = new InMemoryGameManager(gameEvaluateService);
         inMemoryPlayerQueue = new InMemoryPlayerQueue(inMemoryGameManager);
         player1 = inMemoryPlayerQueue.register(new Player());
         player2 = inMemoryPlayerQueue.register(new Player());
@@ -37,52 +41,4 @@ public class InMemoryGameManagerUnitTest {
                 inMemoryGameManager.gameStatus(player1),
                 inMemoryGameManager.gameStatus(player2)
         );
-    }
-
-    @Test
-    public void test_wrong_player_move() {
-        Game game = inMemoryGameManager.gameStatus(player1);
-        Exception exception = Assertions.assertThrows(IllegalMoveException.class, () -> {
-            inMemoryGameManager.dropDisc(game.getSecondPlayer(), 0);
-        });
-
-        Assertions.assertTrue(exception.getMessage().contains("it is not turn"));
-    }
-
-    @Test
-    public void test_minus_column_number() {
-        Game game = inMemoryGameManager.gameStatus(player1);
-        Exception exception = Assertions.assertThrows(IllegalMoveException.class, () -> {
-            inMemoryGameManager.dropDisc(game.getFirstPlayer(), -1);
-        });
-
-        Assertions.assertEquals("column -1 is invalid", exception.getMessage());
-    }
-
-    @Test
-    public void test_excess_column_number() {
-        Game game = inMemoryGameManager.gameStatus(player1);
-        Exception exception = Assertions.assertThrows(IllegalMoveException.class, () -> {
-            inMemoryGameManager.dropDisc(game.getFirstPlayer(), 2000);
-        });
-
-        Assertions.assertEquals("column 2000 is invalid", exception.getMessage());
-    }
-
-    @Test
-    public void test_overfill_column_number() throws IllegalMoveException {
-        Game game = inMemoryGameManager.gameStatus(player1);
-        inMemoryGameManager.dropDisc(game.getFirstPlayer(), 3);
-        inMemoryGameManager.dropDisc(game.getSecondPlayer(), 3);
-        inMemoryGameManager.dropDisc(game.getFirstPlayer(), 3);
-        inMemoryGameManager.dropDisc(game.getSecondPlayer(), 3);
-        inMemoryGameManager.dropDisc(game.getFirstPlayer(), 3);
-        inMemoryGameManager.dropDisc(game.getSecondPlayer(), 3); // 6th
-
-        Exception exception = Assertions.assertThrows(IllegalMoveException.class, () -> {
-            inMemoryGameManager.dropDisc(game.getFirstPlayer(), 3); // 7th
-        });
-
-        Assertions.assertEquals("column 3 is already filled", exception.getMessage());
-    }
-}
+    }}

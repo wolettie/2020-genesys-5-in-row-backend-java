@@ -4,6 +4,7 @@ import info.wonlee.assessment.genesys.game.manager.GameManager;
 import info.wonlee.assessment.genesys.game.manager.InMemoryGameManager;
 import info.wonlee.assessment.genesys.player.InMemoryPlayerQueue;
 import info.wonlee.assessment.genesys.player.PlayerQueue;
+import info.wonlee.assessment.genesys.game.evaluator.GameEvaluator;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +29,7 @@ public class GameBeansConfig {
 
     @Bean(name = "gameManager")
     @ConditionalOnProperty(value = "gameManagement.strategy", havingValue = "inMemory")
-    public GameManager inMemoryGameManager() {
-        return new InMemoryGameManager();
+    public GameManager inMemoryGameManager(GameEvaluator gameEvaluator) {
+        return new InMemoryGameManager(gameEvaluator);
     }
 }

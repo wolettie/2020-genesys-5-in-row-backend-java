@@ -3,6 +3,8 @@ package info.wonlee.assessment.genesys.game.manager;
 import info.wonlee.assessment.genesys.game.Game;
 import info.wonlee.assessment.genesys.game.evaluator.IllegalMoveException;
 import info.wonlee.assessment.genesys.player.Player;
+import info.wonlee.assessment.genesys.game.evaluator.GameEvaluator;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,8 +14,14 @@ import java.util.concurrent.ConcurrentHashMap;
  * Date: 23/12/2020
  */
 
+@Component
 public class InMemoryGameManager implements GameManager {
     private final Map<Player, Game> playerGameMap = new ConcurrentHashMap<>();
+    private final GameEvaluator gameEvaluateService;
+
+    public InMemoryGameManager(GameEvaluator gameEvaluateService) {
+        this.gameEvaluateService = gameEvaluateService;
+    }
 
     @Override
     public Game createGame(Player player1, Player player2) {
@@ -31,7 +39,7 @@ public class InMemoryGameManager implements GameManager {
     @Override
     public Game dropDisc(Player player, int column) throws IllegalMoveException {
         Game game = playerGameMap.get(player);
-        return game.dropDisc(player, column);
+        return gameEvaluateService.dropDisc(game, player, column);
     }
 
     @Override
