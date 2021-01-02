@@ -30,6 +30,7 @@ public class SimpleUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String uuid) throws UsernameNotFoundException {
         final Player player = playerQueue.findByUuid(uuid);
         if (player != null) {
+            playerQueue.checkin(player);
             GrantedAuthority authority = new SimpleGrantedAuthority("PLAYER");
             List<GrantedAuthority> authorityList = Arrays.asList(new GrantedAuthority[]{authority});
             return new SimplePlayerDetails(player, randomString(), authorityList);

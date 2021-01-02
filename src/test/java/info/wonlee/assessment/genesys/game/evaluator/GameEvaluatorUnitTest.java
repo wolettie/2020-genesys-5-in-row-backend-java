@@ -83,6 +83,6 @@ public class GameEvaluatorUnitTest {
             gameEvaluator.dropDisc(game, player1, 3); //7th
         });
 
-        Assertions.assertEquals("column 3 is already filled", exception.getMessage());
+        Assertions.assertEquals("column 4 is already filled", exception.getMessage());
     }
 }

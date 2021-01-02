@@ -24,8 +24,10 @@ public class Game {
     private Player currentPlayer;
 
     private Player winner;
+    private String winningCode;
 
-    private int[][] board = new int[9][6]; // column & row, where row index:0 means bottom of column
+    // column & row, where row index:0 means bottom of column
+    private int[][] board = new int[9][6];
 
     private LocalDateTime startedAt = LocalDateTime.now();
     private LocalDateTime lastMoveAt = LocalDateTime.now();

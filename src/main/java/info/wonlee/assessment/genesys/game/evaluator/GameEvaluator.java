@@ -57,7 +57,7 @@ public class GameEvaluator {
             }
         }
         if (rowIndex < 0) {
-            throw new IllegalMoveException(String.format("column %d is already filled", column));
+            throw new IllegalMoveException(String.format("column %d is already filled", column + 1));
         } else {
             game.setCurrentPlayer((currentPlayer.equals(firstPlayer)) ? secondPlayer : firstPlayer);
             game.setLastMoveAt(LocalDateTime.now());
@@ -67,6 +67,9 @@ public class GameEvaluator {
             final boolean winningMove = finder.find(board, column, rowIndex);
             if (winningMove) {
                 game.setWinner(player);
+                game.setWinningCode(
+                        String.format("MOVE-%s-%d-%d", finder.getClass().getSimpleName(), rowIndex + 1, column + 1)
+                );
                 break;
             }
         }

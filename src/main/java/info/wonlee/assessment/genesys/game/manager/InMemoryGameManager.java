@@ -45,7 +45,10 @@ public class InMemoryGameManager implements GameManager {
     @Override
     public Game playerDisconnected(Player player) {
         Game game = playerGameMap.get(player);
-        game.setWinner((game.getFirstPlayer().equals(player)) ? game.getSecondPlayer() : game.getFirstPlayer());
+        if (game != null && game.getWinner() == null) {
+            game.setWinner((game.getFirstPlayer().equals(player)) ? game.getSecondPlayer() : game.getFirstPlayer());
+            game.setWinningCode("PLDISCON");
+        }
         return game;
     }
 }

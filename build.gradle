@@ -18,8 +18,8 @@ dependencies {
 
 	implementation group: 'com.auth0', name: 'java-jwt', version: '3.12.0'
 
-	implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
-	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
+	implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.16' // for IDEA 2020.3
+	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.16' // for IDEA prior to 2020.3
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'

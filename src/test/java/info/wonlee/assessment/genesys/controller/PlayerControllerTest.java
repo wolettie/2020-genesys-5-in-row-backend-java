@@ -38,6 +38,7 @@ public class PlayerControllerTest {
     public void test_registration() throws Exception {
         Player player = new Player();
         player.setName("player");
+        player.setLastCheckedIn(null);
         ObjectMapper objectMapper = new ObjectMapper();
         final String jsonBody = objectMapper.writeValueAsString(player);
 
@@ -49,7 +50,8 @@ public class PlayerControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        Assertions.assertTrue(mvcResult.getResponse().getContentAsString().startsWith("ey"));
-
+        final String contentAsString = mvcResult.getResponse().getContentAsString();
+        System.out.println(contentAsString);
+        Assertions.assertTrue(contentAsString.startsWith("ey"));
     }
 }

@@ -1,6 +1,9 @@
 package info.wonlee.assessment.genesys.player;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.time.LocalDateTime;
 
 /**
  * User: wonlee
@@ -12,4 +15,7 @@ public class Player {
     private String uuid;
 
     private String name;
+
+    @EqualsAndHashCode.Exclude
+    private LocalDateTime lastCheckedIn = LocalDateTime.now();
 }
